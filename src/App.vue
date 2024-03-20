@@ -20,7 +20,11 @@ import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 export default {
   setup() {
+    localStorage.setItem('OOOOO', "fuck");
 
+    const sss = localStorage.getItem("OOOOO");
+    console.log('取得OOOO:',sss);
+    
     const store = useStore();
     const router = useRouter();
 

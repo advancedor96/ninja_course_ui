@@ -3,6 +3,6 @@ const prodHost = 'https://jax-ninja-course.onrender.com';
 console.log('執行 myconfig.js ');
 
 let apiUrl = process.env.NODE_ENV === 'production' ? prodHost : devHost;
-// apiUrl = devHost;
+apiUrl = prodHost;
 
 export {apiUrl};
