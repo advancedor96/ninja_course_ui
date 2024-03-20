@@ -27,9 +27,10 @@ const store = createStore({
   actions: {
     async login({ commit }, { username, password }) {
       try{
-        await axios.post(apiUrl + '/api/login', { username, password });
+        const res = await axios.post(apiUrl + '/api/login', { username, password });
         commit('setIsLoggedIn', true);
         commit('setUsername', username);
+        return res;
       } catch(err){
         throw err.response.data
       }
@@ -59,9 +60,11 @@ const store = createStore({
     async fetchBlogs({ commit }) {
       try {
         console.log('fetchin...');
-        
+        const jwtToken = localStorage.getItem('token');
+
         const blogs = await axios.get(apiUrl + '/api/blogs', {
           withCredentials: true, // 允許發送跨域 Cookie
+          headers: { 'Authorization': 'Bearer '+jwtToken }
         });
         console.log('finished fetchin...');
         console.log('blogs:', blogs);

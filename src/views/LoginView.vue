@@ -29,7 +29,10 @@ export default {
 
     const login = async () => {
       try {
-        await store.dispatch('login', { username: username.value, password: password.value })
+        const res = await store.dispatch('login', { username: username.value, password: password.value })
+        
+        localStorage.setItem('token', res.data.token);
+
         router.push('/blogs');
       } catch (error) {
         alert(error.message);
